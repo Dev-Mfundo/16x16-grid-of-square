@@ -13,16 +13,9 @@ function createGrid() {
         square.style.width = `${squareSize}px`;
         square.style.height = `${squareSize}px`;
 
-        let darkenAmount = 0;
-
         square.addEventListener('mouseenter', () => {
             const randomColor = getRandomColor();
-            let rgbValues = square.style.backgroundColor.match(/\d+/g).map(Number);
-            
-            rgbValues = rgbValues.map(value => Math.max(value - darkenAmount, 0));
-            square.style.backgroundColor = `rgb(${rgbValues[0]}, ${rgbValues[1]}, ${rgbValues[2]})`;
-
-            darkenAmount += 25.5;
+            square.style.backgroundColor = randomColor;
         });
 
         container.appendChild(square);
@@ -35,5 +28,6 @@ function getRandomColor() {
     const b = Math.floor(Math.random() * 256);
     return `rgb(${r}, ${g}, ${b})`;
 }
+
 
 createGrid();
